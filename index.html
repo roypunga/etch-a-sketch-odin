@@ -7,7 +7,54 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="title">Odin Etch-a-Sketch</div>
+
+    <div class="content">
+       
+        <div class="controls">
+            <fieldset>
+                <legend>Features:</legend>
+            
+                <div>
+                    <input type="checkbox" id="eraser" name="eraser" />
+                    <label for="eraser">Eraser</label>
+                </div>
+            
+                <div>
+                    <input type="checkbox" id="rainbow" name="rainbow" />
+                    <label for="rainbow">Rainbow</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Color:</legend>
+            
+                <div>
+                    <input class="colorPick" type = 'color'>
+                </div>
+            </fieldset>
+
+            <fieldset class="misc">
+                <legend>Misc:</legend>
+            
+                <div>
+                    <button class="reset">Reset</button>
+                </div>
+
+                <div class="slider">
+                    <div>Size:</div>
+                    <input class="gridSize" type="range" value="50" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+                    <output>50</output>
+                </div>
+
+            </fieldset>
+            
+        </div>
+        <div class="grid">
+
+        </div>
+        
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
