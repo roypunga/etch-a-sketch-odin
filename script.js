@@ -8,6 +8,15 @@ const eraser = document.querySelector('#eraser');
 const slider = document.querySelector('.gridSize');
 const resetButton = document.querySelector('.reset')
 
+let mouseDown = 0;
+document.body.onmousedown = function() { 
+    ++mouseDown;
+  }
+  document.body.onmouseup = function() {
+    --mouseDown;
+  }
+
+
 function getGridElements(){
     const divsInGrid = document.querySelectorAll('.grid div');
     return divsInGrid;
@@ -25,13 +34,13 @@ function createDivs(input){
         newDiv.style.minHeight = 400 / input + 'px';
         newDiv.style.flexGrow = '1';
         newDiv.addEventListener('mouseover', () =>{
-            if(rainbow.checked == true){
+            if(rainbow.checked == true && mouseDown == 1){
                 newDiv.style.backgroundColor = 'rgb(' + Math.random() * 255 + ', ' + Math.random() * 255 + ', ' + Math.random() * 255 + ')'
             }
-            else if(eraser.checked == true){
+            else if(eraser.checked == true && mouseDown == 1){
                 newDiv.style.backgroundColor = 'white';
             }
-            else {
+            else if(mouseDown == 1){
                 newDiv.style.backgroundColor = document.querySelector('.colorPick').value;
             }
         })
@@ -61,6 +70,7 @@ function checkboxesLogic(){
     }
 }
 
+
 rainbow.addEventListener('click', ()=> {
     checkboxesLogic();
 });
@@ -73,6 +83,11 @@ slider.addEventListener('click', ()=> {
 })
 resetButton.addEventListener('click', ()=> {
     getGridElements().forEach((element) => element.style.backgroundColor = 'white')
+})
+
+document.body.addEventListener('mousedown', ()=>{
+    if (window.getSelection) {window.getSelection().removeAllRanges();}
+    else if (document.selection) {document.selection.empty();}
 })
 
 createDivs(50);
